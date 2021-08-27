@@ -264,33 +264,29 @@
 			<div class="row">
 		
 			  <!-- Contact Form -->
-			  <div class="col-md-6 contact">
-			     <form role="form">
-				            <!-- Name -->
-                            <div class="row">
-                                <div class="col-md-6">
-								    <!-- E-Mail -->
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Your name">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-								    <!-- Phone Number -->
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Email address">
-                                    </div>
-                                </div>
-                            </div>
-							<!-- Message Area -->
-                            <div class="form-group">
-                                <textarea class="form-control" placeholder="Write you message here..." style="height:232px;"></textarea>
-                            </div>
-							<!-- Subtmit Button -->
-                            <button type="submit" class="btn btn-send">
-                                Send message
-                            </button>
-                        </form>
-			  </div>
+			  <div class="cont">
+          <form id="submit-form" action="">
+        
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+        
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+        
+            <label for="country">Country</label>
+            <select id="country" name="country">
+              <option value="australia">Australia</option>
+              <option value="canada">Canada</option>
+              <option value="usa">USA</option>
+            </select>
+        
+            <label for="subject">Subject</label>
+            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+        
+            <input type="submit" value="Submit">
+        
+          </form>
+        </div>
 			</div>
 			<br>
 			<!-- Social Buttons - use font-awesome, past in what you want -->
@@ -393,6 +389,26 @@
       speed: 2000 // How many milliseconds until the next word show.
     });
     </script>
+
+<script>
+  $("#submit-form").submit((e)=>{
+      e.preventDefault()
+      $.ajax({
+          url:"https://script.google.com/macros/s/AKfycbyjdfSiCrFI5r64ktfSrlO2oux0fmUdKwKafmlkhPilpkenexj8c852wqNpEwQnyUg/exec",
+          data:$("#submit-form").serialize(),
+          method:"post",
+          success:function (response){
+              alert("Form submitted successfully")
+              window.location.reload()
+              //window.location.href="https://google.com"
+          },
+          error:function (err){
+              alert("Something Error")
+
+          }
+      })
+  })
+</script>
 	
     </body>
 </html>
